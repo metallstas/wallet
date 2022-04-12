@@ -3,7 +3,7 @@ import cls from './Main.module.css'
 export const Main = () => {
   return (
     <main>
-      <button className={cls.button}>+</button>
+      <button alt='Add category' className={cls.button}>+</button>
     </main>
   )
 }
