@@ -11,7 +11,7 @@ export const Main = () => {
     background: isBlueButton ? 'blue' : '',
     color: isBlueButton ? '#fff' : '',
   }
-  
+
   return (
     <main>
       <button
