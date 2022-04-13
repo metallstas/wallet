@@ -1,26 +1,17 @@
 import { useState } from 'react'
+import { Outlet } from 'react-router-dom'
+import { Footer } from '../Footer/Footer'
+import { Header } from '../Header/Header'
 import cls from './Main.module.css'
 
 export const Main = () => {
-  const [isBlueButton, setIsBlueButton] = useState<boolean>(false)
-
-  const onClickChangeBackground = () => {
-    setIsBlueButton((prev) => !prev)
-  }
-  const styleBtn = {
-    background: isBlueButton ? 'blue' : '',
-    color: isBlueButton ? '#fff' : '',
-  }
-
   return (
-    <main>
-      <button
-        style={styleBtn}
-        onClick={onClickChangeBackground}
-        className={cls.button}
-      >
-        +
-      </button>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   )
 }
