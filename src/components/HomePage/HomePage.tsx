@@ -7,7 +7,7 @@ export const HomePage = () => {
   const navigate = useNavigate()
   const onClickChangeBackground = () => {
     setIsBlueButton((prev) => !prev)
-    navigate('/modal')
+    navigate('/add-category')
   }
   const styleBtn = {
     background: isBlueButton ? 'blue' : '',
