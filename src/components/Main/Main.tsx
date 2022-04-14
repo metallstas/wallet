@@ -1,10 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
+import { getCategories } from '../../redux/actions/categoriesAction'
 import { Footer } from '../Footer/Footer'
 import { Header } from '../Header/Header'
 import cls from './Main.module.css'
 
 export const Main = () => {
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [])
+
   return (
     <>
       <Header />
