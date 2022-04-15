@@ -5,6 +5,17 @@
       "id": 1,
       "color": "#ffffff",
       "icon": "icon"
+    },
+    {
+      "title": "casd",
+      "id": 2,
+      "color": "#ff2121"
+    },
+    {
+      "title": "CAR",
+      "id": 3,
+      "icon": "car",
+      "color": "#03a9f4"
     }
   ]
 }

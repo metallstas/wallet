@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import cls from './HomePage.module.css'
 
 export const HomePage = () => {
