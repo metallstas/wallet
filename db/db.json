@@ -5,6 +5,18 @@
       "id": 1,
       "color": "#ffffff",
       "icon": "icon"
+    },
+    {
+      "title": "CAR",
+      "id": 3,
+      "icon": "car",
+      "color": "#03a9f4"
+    },
+    {
+      "title": "GGG",
+      "id": 7516681315408813,
+      "icon": "games",
+      "color": "#ffeb3b"
     }
   ]
 }

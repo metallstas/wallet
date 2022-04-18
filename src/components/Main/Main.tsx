@@ -17,7 +17,9 @@ export const Main = () => {
     <>
       <Header />
       <main>
+        <div className={cls.container}>
         <Outlet />
+        </div>
       </main>
       <Footer />
     </>
