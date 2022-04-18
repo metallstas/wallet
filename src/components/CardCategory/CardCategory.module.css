@@ -1,0 +1,21 @@
+.category {
+  width: 290px;
+  margin: 5px;
+  cursor: pointer;
+  box-shadow: 2px 4px 5px 0 rgba(0,0,0, .2);
+  transition: all .5s ease;
+}
+
+.category:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  width: 200px;
+  height: auto;
+  padding: 10px;
+}
+
+.title {
+  padding-bottom: 10px;
+}

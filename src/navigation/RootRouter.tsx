@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomePage } from '../components/HomePage/HomePage'
 import { Main } from '../components/Main/Main'
-import { AddCategory } from '../components/Modal/AddCategory'
+import { AddCategory } from '../components/AddCategory/AddCategory'
 
 export const RooteRouter = () => {
   return (
