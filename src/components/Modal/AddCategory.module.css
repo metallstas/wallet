@@ -13,6 +13,7 @@
   position: relative;
   width: 50px;
   height: 50px;
+  cursor: pointer;
 }
 
 .icon {
@@ -25,7 +26,6 @@
 
 .iconCheck {
   position: absolute;
-  /* top: 5px; */
   right: 5px;
   margin-top: 5px;
 }
@@ -34,6 +34,7 @@
   position: relative;
   width: 50px;
   height: 50px;
+  cursor: pointer;
   margin: 0 5px;
   border: 1px solid #000;
 }

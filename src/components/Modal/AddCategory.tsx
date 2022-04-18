@@ -12,7 +12,7 @@ import { IoIosCheckmark } from 'react-icons/io'
 import cls from './AddCategory.module.css'
 import { IconType } from 'react-icons/lib'
 
-const color = [
+export const color = [
   { color: '#ffeb3b', id: 'yellow' },
   { color: '#03a9f4', id: 'blue' },
   { color: '#ff2121', id: 'red' },
@@ -20,7 +20,7 @@ const color = [
   { color: '#ff9800', id: 'orange' },
 ]
 
-const icon = [
+export const icon = [
   { icon: GiConsoleController, id: 'games' },
   { icon: IoCarSportOutline, id: 'car' },
   { icon: FaBicycle, id: 'bike' },
@@ -44,17 +44,20 @@ export const AddCategory = () => {
   const [activeIcon, setActiveIcon] = useState<IIcon>()
 
   const [title, setTitle] = useState<string>('')
-  const [id, setId] = useState<number>(2)
+
+  const createIdCategory = () => {
+    return +Math.random().toString().slice(2)
+  }
+
 
   const onChangeTitle = useCallback((e) => {
     setTitle(e.target.value)
   }, [])
 
   const onClickAddCategory = () => {
-    setId((prev) => prev + 1)
     const newCategory: ICategory = {
       title,
-      id,
+      id: createIdCategory(),
       icon: activeIcon ? `${activeIcon.id}` : '',
       color: activeColor ? `${activeColor.color}` : '',
     }
