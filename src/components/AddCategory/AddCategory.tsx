@@ -11,6 +11,7 @@ import { IoMdPhonePortrait } from 'react-icons/io'
 import { IoIosCheckmark } from 'react-icons/io'
 import cls from './AddCategory.module.css'
 import { IconType } from 'react-icons/lib'
+import { validationServices } from '../../services/validation'
 
 export const colors = [
   { color: '#ffeb3b', id: 'yellow' },
@@ -38,10 +39,15 @@ export interface IIcon {
   id: string
 }
 
+interface IErrors {
+  title: string
+}
+
 export const AddCategory = () => {
   const dispatch = useDispatch()
   const [activeColor, setActiveColor] = useState<IColor>()
   const [activeIcon, setActiveIcon] = useState<IIcon>()
+  const [errors, setErrors] = useState<IErrors>({ title: '' })
 
   const [title, setTitle] = useState<string>('')
 
@@ -49,19 +55,25 @@ export const AddCategory = () => {
     return +Math.random().toString().slice(2)
   }
 
-
   const onChangeTitle = useCallback((e) => {
+    const error = validationServices.validationTitle(e.target.value)
+    setErrors((errors) => ({ ...errors, title: error }))
     setTitle(e.target.value)
   }, [])
 
   const onClickAddCategory = () => {
+    const errors = { title: validationServices.validationTitle(title) }
+    setErrors(errors)
+    if (errors.title !== '') {
+      return
+    }
+
     const newCategory: ICategory = {
       title,
       id: createIdCategory(),
       icon: activeIcon ? `${activeIcon.id}` : '',
       color: activeColor ? `${activeColor.color}` : '',
     }
-    console.log(newCategory)
     dispatch(addCategory(newCategory))
     setTitle('')
     setActiveColor({ color: '', id: '' })
@@ -76,7 +88,9 @@ export const AddCategory = () => {
           id='title'
           value={title}
           onChange={onChangeTitle}
+          error={errors.title}
         />
+
         <div className={cls.iconBlock}>
           <p>Иконки: </p>
           <div>

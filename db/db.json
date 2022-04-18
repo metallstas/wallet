@@ -35,6 +35,12 @@
       "id": 9883665995390842,
       "icon": "games",
       "color": "#8bc34a"
+    },
+    {
+      "title": "AutoSports",
+      "id": 8149845404969489,
+      "icon": "car",
+      "color": "#ff2121"
     }
   ]
 }
