@@ -3,9 +3,20 @@
   height: 30px;
   margin: 20px;
   border: 1px solid #000;
+  background: none;
   cursor: pointer;
+  transition: all .5s ease;
+}
+
+.button:hover {
+  background: rgb(108, 226, 108);
 }
 
 .h1 {
   font-size: 100px;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
 }

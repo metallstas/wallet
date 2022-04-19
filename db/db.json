@@ -3,20 +3,44 @@
     {
       "title": "Еда",
       "id": 1,
-      "color": "#ffffff",
+      "color": "blue",
       "icon": "icon"
     },
     {
-      "title": "CAR",
-      "id": 3,
-      "icon": "car",
-      "color": "#03a9f4"
-    },
-    {
-      "title": "GGG",
+      "title": "Games",
       "id": 7516681315408813,
       "icon": "games",
       "color": "#ffeb3b"
+    },
+    {
+      "title": "Bike",
+      "id": 5640336325528335,
+      "icon": "bike",
+      "color": "#ff2121"
+    },
+    {
+      "title": "Guitar",
+      "id": 5126347862849763,
+      "icon": "guitar",
+      "color": "#8bc34a"
+    },
+    {
+      "title": "Phone",
+      "id": 9163731734229820,
+      "icon": "smartphone",
+      "color": "#ff9800"
+    },
+    {
+      "title": "Hardcore Games",
+      "id": 9883665995390842,
+      "icon": "games",
+      "color": "#8bc34a"
+    },
+    {
+      "title": "AutoSports",
+      "id": 8149845404969489,
+      "icon": "car",
+      "color": "#ff2121"
     }
   ]
 }

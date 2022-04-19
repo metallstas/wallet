@@ -11,8 +11,9 @@ import { IoMdPhonePortrait } from 'react-icons/io'
 import { IoIosCheckmark } from 'react-icons/io'
 import cls from './AddCategory.module.css'
 import { IconType } from 'react-icons/lib'
+import { validationServices } from '../../services/validation'
 
-export const color = [
+export const colors = [
   { color: '#ffeb3b', id: 'yellow' },
   { color: '#03a9f4', id: 'blue' },
   { color: '#ff2121', id: 'red' },
@@ -20,7 +21,7 @@ export const color = [
   { color: '#ff9800', id: 'orange' },
 ]
 
-export const icon = [
+export const icons = [
   { icon: GiConsoleController, id: 'games' },
   { icon: IoCarSportOutline, id: 'car' },
   { icon: FaBicycle, id: 'bike' },
@@ -33,15 +34,20 @@ interface IColor {
   id: string
 }
 
-interface IIcon {
+export interface IIcon {
   icon: IconType | string
   id: string
+}
+
+interface IErrors {
+  title: string
 }
 
 export const AddCategory = () => {
   const dispatch = useDispatch()
   const [activeColor, setActiveColor] = useState<IColor>()
   const [activeIcon, setActiveIcon] = useState<IIcon>()
+  const [errors, setErrors] = useState<IErrors>({ title: '' })
 
   const [title, setTitle] = useState<string>('')
 
@@ -49,19 +55,25 @@ export const AddCategory = () => {
     return +Math.random().toString().slice(2)
   }
 
-
   const onChangeTitle = useCallback((e) => {
+    const error = validationServices.validationTitle(e.target.value)
+    setErrors((errors) => ({ ...errors, title: error }))
     setTitle(e.target.value)
   }, [])
 
   const onClickAddCategory = () => {
+    const errors = { title: validationServices.validationTitle(title) }
+    setErrors(errors)
+    if (errors.title !== '') {
+      return
+    }
+
     const newCategory: ICategory = {
       title,
       id: createIdCategory(),
       icon: activeIcon ? `${activeIcon.id}` : '',
       color: activeColor ? `${activeColor.color}` : '',
     }
-    console.log(newCategory)
     dispatch(addCategory(newCategory))
     setTitle('')
     setActiveColor({ color: '', id: '' })
@@ -76,11 +88,13 @@ export const AddCategory = () => {
           id='title'
           value={title}
           onChange={onChangeTitle}
+          error={errors.title}
         />
+
         <div className={cls.iconBlock}>
           <p>Иконки: </p>
           <div>
-            {icon.map((el) => {
+            {icons.map((el) => {
               return (
                 <span key={el.id} className={cls.iconWrap}>
                   <el.icon
@@ -107,7 +121,7 @@ export const AddCategory = () => {
         <div className={cls.iconBlock}>
           <p>Цвет: </p>
           <div className={cls.colorBlock}>
-            {color.map((el) => {
+            {colors.map((el) => {
               return (
                 <p
                   onClick={(e) => {
