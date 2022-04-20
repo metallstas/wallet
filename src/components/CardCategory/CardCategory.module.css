@@ -17,5 +17,7 @@
 }
 
 .title {
+  margin: 0 10px;
   padding-bottom: 10px;
+  word-wrap: break-word;
 }

@@ -52,3 +52,12 @@
 .active {
   border: 2px solid blue;
 }
+
+.nameBlock {
+  width: 70px;
+}
+
+.button {
+  padding: 5px 10px;
+  margin-top: 15px;
+}

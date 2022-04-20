@@ -16,7 +16,7 @@ export const Main = () => {
   return (
     <>
       <Header />
-      <main>
+      <main style={{minHeight: '100vh'}}>
         <div className={cls.container}>
         <Outlet />
         </div>

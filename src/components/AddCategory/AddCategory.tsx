@@ -12,6 +12,9 @@ import { IoIosCheckmark } from 'react-icons/io'
 import cls from './AddCategory.module.css'
 import { IconType } from 'react-icons/lib'
 import { validationServices } from '../../services/validation'
+import { CardCategory } from '../CardCategory/CardCategory'
+import { PreviewCategory } from '../PreviewCategory/PreviewCategory'
+import { useNavigate } from 'react-router-dom'
 
 export const colors = [
   { color: '#ffeb3b', id: 'yellow' },
@@ -45,6 +48,7 @@ interface IErrors {
 
 export const AddCategory = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [activeColor, setActiveColor] = useState<IColor>()
   const [activeIcon, setActiveIcon] = useState<IIcon>()
   const [errors, setErrors] = useState<IErrors>({ title: '' })
@@ -78,6 +82,7 @@ export const AddCategory = () => {
     setTitle('')
     setActiveColor({ color: '', id: '' })
     setActiveIcon({ icon: '', id: '' })
+    navigate('/')
   }
 
   return (
@@ -92,7 +97,7 @@ export const AddCategory = () => {
         />
 
         <div className={cls.iconBlock}>
-          <p>Иконки: </p>
+          <p className={cls.nameBlock}>Иконки: </p>
           <div>
             {icons.map((el) => {
               return (
@@ -119,7 +124,7 @@ export const AddCategory = () => {
           </div>
         </div>
         <div className={cls.iconBlock}>
-          <p>Цвет: </p>
+          <p className={cls.nameBlock}>Цвет: </p>
           <div className={cls.colorBlock}>
             {colors.map((el) => {
               return (
@@ -146,8 +151,15 @@ export const AddCategory = () => {
             })}
           </div>
         </div>
-        <button onClick={onClickAddCategory}>Добавить</button>
+        <button className={cls.button} onClick={onClickAddCategory}>Добавить</button>
       </div>
+      {title || activeColor || activeIcon ? (
+        <PreviewCategory
+          title={title ? title : ''}
+          icon={activeIcon ? activeIcon.id : ''}
+          color={activeColor ? activeColor?.color : ''}
+        />
+      ) : null}
     </div>
   )
 }

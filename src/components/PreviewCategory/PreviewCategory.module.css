@@ -1,0 +1,21 @@
+.previewBlock {
+  margin-top: 30px;
+}
+
+.preview {
+  max-width: 290px;
+  margin: 20px auto;
+  border: 1px solid #000;
+}
+
+.icon {
+  width: 200px;
+  height: auto;
+  padding: 10px;
+}
+
+.title {
+  margin: 0 10px;
+  padding-bottom: 10px;
+  word-wrap: break-word;
+}
