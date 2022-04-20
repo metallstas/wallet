@@ -13,7 +13,7 @@ export const CardCategory = ({ title, id, icon, color }: ICategory) => {
 
   return (
     <div className={cls.category} id={id.toString()}>
-      <div style={{ background: color }}>
+      <div style={{ background: color, height: '100%'}}>
         <currentIcon.icon className={cls.icon}></currentIcon.icon>
         <h2 className={cls.title}>{title}</h2>
       </div>
