@@ -1,4 +1,4 @@
-import { icons } from '../AddCategory/AddCategory'
+import { icons } from '../../redux/constans'
 import { AiOutlineExpand } from 'react-icons/ai'
 import cls from './PreviewCategory.module.css'
 
