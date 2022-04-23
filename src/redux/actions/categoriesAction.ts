@@ -25,13 +25,16 @@ export const clearReductCategory = () => {
 
 export const updateCategory = (category: ICategory) => {
   return async () => {
-    const resp = await fetch(`http://localhost:3005/categories/${category.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(category)
-    })
+    const resp = await fetch(
+      `http://localhost:3005/categories/${category.id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(category),
+      }
+    )
   }
 }
 
@@ -43,6 +46,17 @@ export const addCategory = (category: ICategory) => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(category),
+    })
+  }
+}
+
+export const removeCategory = (id: number) => {
+  return async () => {
+    const resp = await fetch(`http://localhost:3005/categories/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      }
     })
   }
 }

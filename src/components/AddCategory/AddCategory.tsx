@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   addCategory,
   clearReductCategory,
+  removeCategory,
   updateCategory,
 } from '../../redux/actions/categoriesAction'
 import { ICategory } from '../../redux/reducers/categoriesReducer'
@@ -16,7 +17,6 @@ import { IoIosCheckmark } from 'react-icons/io'
 import cls from './AddCategory.module.css'
 import { IconType } from 'react-icons/lib'
 import { validationServices } from '../../services/validation'
-import { CardCategory } from '../CardCategory/CardCategory'
 import { PreviewCategory } from '../PreviewCategory/PreviewCategory'
 import { useNavigate } from 'react-router-dom'
 import { IState } from '../../redux/store'
@@ -79,7 +79,7 @@ export const AddCategory = ({}) => {
     return () => {
       dispatch(clearReductCategory())
     }
-  },[])
+  }, [])
 
   const createIdCategory = () => {
     return +Math.random().toString().slice(2)
@@ -125,6 +125,13 @@ export const AddCategory = ({}) => {
       color: activeColor.color,
     }
     dispatch(updateCategory(redactCategory))
+  }
+
+  const onClickRemoveCategory = () => {
+    setActiveColor({color: '', id: ''})
+    setActiveIcon({icon: '', id: ''})
+    setTitle('')
+    dispatch(removeCategory(category.id))
   }
 
   return (
@@ -193,7 +200,7 @@ export const AddCategory = ({}) => {
             })}
           </div>
         </div>
-        {category ? (
+        {category.title ? (
           <button className={cls.button} onClick={onClickSaveChanges}>
             Сохранить Изменения
           </button>
@@ -209,6 +216,12 @@ export const AddCategory = ({}) => {
           icon={activeIcon ? activeIcon.id : ''}
           color={activeColor ? activeColor?.color : ''}
         />
+      ) : null}
+      {console.log(category)}
+      {category.title ? (
+        <button className={cls.button} onClick={onClickRemoveCategory}>
+          Удалить категорию
+        </button>
       ) : null}
     </div>
   )
