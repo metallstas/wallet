@@ -1,32 +1,23 @@
 import { useCallback, useEffect, useState } from 'react'
+import { FaGuitar } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  addCategory,
   clearReductCategory,
   removeCategory,
   updateCategory,
 } from '../../redux/actions/categoriesAction'
-import { ICategory } from '../../redux/reducers/categoriesReducer'
-import { Input } from '../Input/Input'
-import { FaGuitar } from 'react-icons/fa'
-import { IoIosCheckmark } from 'react-icons/io'
-import cls from './AddCategory.module.css'
-import { IconType } from 'react-icons/lib'
-import { validationServices } from '../../services/validation'
-import { PreviewCategory } from '../PreviewCategory/PreviewCategory'
-import { useNavigate } from 'react-router-dom'
-import { IState } from '../../redux/store'
 import { colors, icons } from '../../redux/constans'
+import { ICategory } from '../../redux/reducers/categoriesReducer'
+import { IState } from '../../redux/store'
+import { validationServices } from '../../services/validation'
+import { IErrors } from '../AddCategory/AddCategory'
 import { Color, IColorActive } from '../Color/Color'
 import { Icon, IIconActive } from '../Icon/Icon'
+import { Input } from '../Input/Input'
+import { PreviewCategory } from '../PreviewCategory/PreviewCategory'
+import cls from './RedactCategory.module.css'
 
-export interface IErrors {
-  title: string
-}
-
-export const AddCategory = ({}) => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+export const RedactCategory = () => {
   const category = useSelector(
     (state: IState) => state.categoriesReducer.redactCategory
   )
@@ -42,13 +33,24 @@ export const AddCategory = ({}) => {
     },
     { color: '#fff', id: '' }
   )
+
+  const dispatch = useDispatch()
   const [activeColor, setActiveColor] = useState<IColorActive>(redactColor)
   const [activeIcon, setActiveIcon] = useState<IIconActive>(redactIcon)
   const [errors, setErrors] = useState<IErrors>({ title: '' })
   const [title, setTitle] = useState<string>(category ? category.title : '')
 
-  const createIdCategory = () => {
-    return +Math.random().toString().slice(2)
+  useEffect(() => {
+    return () => {
+      dispatch(clearReductCategory())
+    }
+  }, [])
+
+  const onClickDeleteCategory = () => {
+    setActiveColor({ color: '', id: '' })
+    setActiveIcon({ icon: '', id: '' })
+    setTitle('')
+    dispatch(removeCategory(category.id))
   }
 
   const onChangeTitle = useCallback((e) => {
@@ -57,24 +59,19 @@ export const AddCategory = ({}) => {
     setTitle(e.target.value)
   }, [])
 
-  const onClickAddCategory = () => {
+  const onClickSaveChanges = () => {
     const errors = { title: validationServices.validationTitle(title) }
     setErrors(errors)
     if (errors.title !== '') {
       return
     }
-
-    const newCategory: ICategory = {
+    const redactCategory: ICategory = {
       title,
-      id: createIdCategory(),
-      icon: activeIcon ? `${activeIcon.id}` : '',
-      color: activeColor ? `${activeColor.color}` : '',
+      id: category.id,
+      icon: activeIcon.id,
+      color: activeColor.color,
     }
-    dispatch(addCategory(newCategory))
-    setTitle('')
-    setActiveColor({ color: '', id: '' })
-    setActiveIcon({ icon: '', id: '' })
-    navigate('/')
+    dispatch(updateCategory(redactCategory))
   }
 
   return (
@@ -89,18 +86,22 @@ export const AddCategory = ({}) => {
         />
         <Icon activeIcon={activeIcon} setActiveIcon={setActiveIcon} />
         <Color activeColor={activeColor} setActiveColor={setActiveColor} />
-          <button className={cls.button} onClick={onClickAddCategory}>
-            Добавить
+        <div className={cls.buttonBlock}>
+          <button className={cls.button} onClick={onClickDeleteCategory}>
+            Удалить категорию
           </button>
+          <button className={cls.button} onClick={onClickSaveChanges}>
+            Сохранить Изменения
+          </button>
+        </div>
+        {title || activeColor || activeIcon ? (
+          <PreviewCategory
+            title={title ? title : ''}
+            icon={activeIcon ? activeIcon.id : ''}
+            color={activeColor ? activeColor?.color : ''}
+          />
+        ) : null}
       </div>
-      {title || activeColor || activeIcon ? (
-        <PreviewCategory
-          title={title ? title : ''}
-          icon={activeIcon ? activeIcon.id : ''}
-          color={activeColor ? activeColor?.color : ''}
-        />
-      ) : null}
-      
     </div>
   )
 }

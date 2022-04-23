@@ -1,5 +1,5 @@
 import { ICategory } from '../../redux/reducers/categoriesReducer'
-import { icons } from '../AddCategory/AddCategory'
+import { icons } from '../../redux/constans'
 import { AiOutlineExpand } from 'react-icons/ai'
 import cls from './CardCategory.module.css'
 import { useState } from 'react'
@@ -22,7 +22,7 @@ export const CardCategory = ({ title, id, icon, color }: ICategory) => {
 
   const onClickGear = () => {
     dsipatch(redactCategory({ title, id, icon, color }))
-    navigate('/add-category')
+    navigate('/redact-category')
   }
 
   return (
