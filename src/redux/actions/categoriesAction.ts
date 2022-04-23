@@ -1,9 +1,14 @@
+import { ICategory } from './../reducers/categoriesReducer'
 import { Dispatch } from 'redux'
 import { ACTIONS } from '../constans'
-import { ICategories, ICategory } from '../reducers/categoriesReducer'
+import { ICategories } from '../reducers/categoriesReducer'
 
 const allCategory = (categories: ICategories[]) => {
   return { type: ACTIONS.GET_CATEGORIES, categories }
+}
+
+export const redactCategory = (category: ICategory) => {
+  return { type: ACTIONS.REDACT_CATEGORY, category }
 }
 
 export const getCategories = () => {
@@ -14,8 +19,23 @@ export const getCategories = () => {
   }
 }
 
+export const clearReductCategory = () => {
+  return { type: ACTIONS.CLEAR_REDACT_CATEGORY }
+}
+
+export const updateCategory = (category: ICategory) => {
+  return async () => {
+    const resp = await fetch(`http://localhost:3005/categories/${category.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(category)
+    })
+  }
+}
+
 export const addCategory = (category: ICategory) => {
-  console.log(category)
   return async () => {
     const resp = await fetch('http://localhost:3005/categories', {
       method: 'POST',
@@ -24,6 +44,5 @@ export const addCategory = (category: ICategory) => {
       },
       body: JSON.stringify(category),
     })
-    console.log(resp.json())
   }
 }

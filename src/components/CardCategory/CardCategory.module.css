@@ -1,4 +1,5 @@
 .category {
+  position: relative;
   width: 290px;
   margin: 5px;
   cursor: pointer;
@@ -14,6 +15,18 @@
   width: 200px;
   height: auto;
   padding: 10px;
+}
+
+.gear {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  transition: all .5s ease;
+}
+
+.active {
+  transform: rotate(180deg);
 }
 
 .title {
