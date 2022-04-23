@@ -1,6 +1,10 @@
-import { useCallback, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addCategory } from '../../redux/actions/categoriesAction'
+import { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addCategory,
+  clearReductCategory,
+  updateCategory,
+} from '../../redux/actions/categoriesAction'
 import { ICategory } from '../../redux/reducers/categoriesReducer'
 import { Input } from '../Input/Input'
 import { GiConsoleController } from 'react-icons/gi'
@@ -15,6 +19,7 @@ import { validationServices } from '../../services/validation'
 import { CardCategory } from '../CardCategory/CardCategory'
 import { PreviewCategory } from '../PreviewCategory/PreviewCategory'
 import { useNavigate } from 'react-router-dom'
+import { IState } from '../../redux/store'
 
 export const colors = [
   { color: '#ffeb3b', id: 'yellow' },
@@ -46,14 +51,35 @@ interface IErrors {
   title: string
 }
 
-export const AddCategory = () => {
+export const AddCategory = ({}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [activeColor, setActiveColor] = useState<IColor>()
-  const [activeIcon, setActiveIcon] = useState<IIcon>()
-  const [errors, setErrors] = useState<IErrors>({ title: '' })
+  const category = useSelector(
+    (state: IState) => state.categoriesReducer.redactCategory
+  )
+  const redactIcon = icons.reduce(
+    (prev, current) => {
+      return current.id === category.icon ? current : prev
+    },
+    { icon: FaGuitar, id: '' }
+  )
 
-  const [title, setTitle] = useState<string>('')
+  const redactColor = colors.reduce(
+    (prev, current) => {
+      return current.color === category.color ? current : prev
+    },
+    { color: '#fff', id: '' }
+  )
+  const [activeColor, setActiveColor] = useState<IColor>(redactColor)
+  const [activeIcon, setActiveIcon] = useState<IIcon>(redactIcon)
+  const [errors, setErrors] = useState<IErrors>({ title: '' })
+  const [title, setTitle] = useState<string>(category ? category.title : '')
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearReductCategory())
+    }
+  },[])
 
   const createIdCategory = () => {
     return +Math.random().toString().slice(2)
@@ -83,6 +109,22 @@ export const AddCategory = () => {
     setActiveColor({ color: '', id: '' })
     setActiveIcon({ icon: '', id: '' })
     navigate('/')
+  }
+
+  const onClickSaveChanges = () => {
+    const errors = { title: validationServices.validationTitle(title) }
+    setErrors(errors)
+    if (errors.title !== '') {
+      return
+    }
+    console.log(category.id)
+    const redactCategory: ICategory = {
+      title,
+      id: category.id,
+      icon: activeIcon.id,
+      color: activeColor.color,
+    }
+    dispatch(updateCategory(redactCategory))
   }
 
   return (
@@ -151,7 +193,15 @@ export const AddCategory = () => {
             })}
           </div>
         </div>
-        <button className={cls.button} onClick={onClickAddCategory}>Добавить</button>
+        {category ? (
+          <button className={cls.button} onClick={onClickSaveChanges}>
+            Сохранить Изменения
+          </button>
+        ) : (
+          <button className={cls.button} onClick={onClickAddCategory}>
+            Добавить
+          </button>
+        )}
       </div>
       {title || activeColor || activeIcon ? (
         <PreviewCategory
