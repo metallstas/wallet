@@ -25,8 +25,13 @@ export const CardCategory = ({ title, id, icon, color }: ICategory) => {
     navigate('/redact-category')
   }
 
+  const onClickCrad = () => {
+    navigate(`/category/${id}`)
+  }
+
   return (
     <div
+      onClick={onClickCrad}
       onMouseEnter={() => setShowGear(true)}
       onMouseLeave={() => setShowGear(false)}
       className={cls.category}

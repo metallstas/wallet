@@ -1,17 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  addCategory,
-  clearReductCategory,
-  removeCategory,
-  updateCategory,
-} from '../../redux/actions/categoriesAction'
+import { addCategory } from '../../redux/actions/categoriesAction'
 import { ICategory } from '../../redux/reducers/categoriesReducer'
 import { Input } from '../Input/Input'
 import { FaGuitar } from 'react-icons/fa'
-import { IoIosCheckmark } from 'react-icons/io'
 import cls from './AddCategory.module.css'
-import { IconType } from 'react-icons/lib'
 import { validationServices } from '../../services/validation'
 import { PreviewCategory } from '../PreviewCategory/PreviewCategory'
 import { useNavigate } from 'react-router-dom'
@@ -89,9 +82,9 @@ export const AddCategory = ({}) => {
         />
         <Icon activeIcon={activeIcon} setActiveIcon={setActiveIcon} />
         <Color activeColor={activeColor} setActiveColor={setActiveColor} />
-          <button className={cls.button} onClick={onClickAddCategory}>
-            Добавить
-          </button>
+        <button className={cls.button} onClick={onClickAddCategory}>
+          Добавить
+        </button>
       </div>
       {title || activeColor || activeIcon ? (
         <PreviewCategory
@@ -100,7 +93,6 @@ export const AddCategory = ({}) => {
           color={activeColor ? activeColor?.color : ''}
         />
       ) : null}
-      
     </div>
   )
 }

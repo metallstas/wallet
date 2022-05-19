@@ -1,0 +1,17 @@
+.keyboard {
+  display: block;
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.numbers {
+  display: flex;
+  max-width: 120px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.anotherButtons {
+  margin-left: 7px;
+}

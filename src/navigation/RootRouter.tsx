@@ -3,6 +3,7 @@ import { HomePage } from '../components/HomePage/HomePage'
 import { Main } from '../components/Main/Main'
 import { AddCategory } from '../components/AddCategory/AddCategory'
 import { RedactCategory } from '../components/RedactCategory/RedactCategor'
+import { Category } from '../components/Category/Category'
 
 export const RooteRouter = () => {
   return (
@@ -12,6 +13,7 @@ export const RooteRouter = () => {
           <Route index element={<HomePage />} />
           <Route path='/add-category' element={<AddCategory />} />
           <Route path='/redact-category' element={<RedactCategory />} />
+          <Route path='/category/:id' element={<Category />} />
         </Route>
       </Routes>
     </BrowserRouter>
