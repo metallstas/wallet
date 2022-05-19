@@ -60,3 +60,11 @@ export const removeCategory = (id: number) => {
     })
   }
 }
+
+export const getCategoryById = (id: number) => {
+  return async (dispatch: Dispatch) => {
+    const resp = await fetch(`http://localhost:3005/categories/${id}`)
+    const data = await resp.json()
+    dispatch({type: ACTIONS.GET_CATEGORY_BY_ID, data})
+  }
+}

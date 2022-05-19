@@ -1,0 +1,12 @@
+.successButton {
+  padding: 10px;
+  margin: 2.5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  background: rgb(25, 166, 15);
+  margin-bottom: 5px;
+}
+
+.successButton:hover {
+  background: rgb(31, 206, 12);
+}

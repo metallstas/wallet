@@ -1,0 +1,42 @@
+.notes {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+label {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+textarea {
+  width: 300px;
+  min-height: 100px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.enter_button {
+  padding: 5px 10px;
+  margin-top: 30px;
+  cursor: pointer;
+  background: none;
+  border: 1px solid #000;
+}
+
+.enter_button:hover {
+  background: #ccc;
+}
+
+.summ {
+  min-height: 30px;
+  margin: 10px 0;
+  text-align: right;
+  padding: 0 10px;
+}
+
+.clockface {
+  max-width: 200px;
+  padding: 0 11px;
+  margin: 0 auto;
+}

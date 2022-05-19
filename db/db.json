@@ -37,16 +37,32 @@
       "color": "#03a9f4"
     },
     {
-      "title": "Sport Bike",
+      "title": "Bike",
       "id": 9089330552412782,
       "icon": "bike",
-      "color": "#8bc34a"
+      "color": "#03a9f4"
     },
     {
       "title": "Electro Guitar",
       "id": 7330590182874754,
       "icon": "guitar",
       "color": "#ffeb3b"
+    }
+  ],
+  "transaction": [
+    {
+      "date": "19.05.2022",
+      "sum": "55",
+      "category": "Phone",
+      "id": 1652948149618,
+      "note": "asd"
+    },
+    {
+      "date": "19.05.2022",
+      "sum": "55.99",
+      "category": "Phone",
+      "id": 1652948303228,
+      "note": "sad"
     }
   ]
 }
