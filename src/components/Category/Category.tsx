@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCategoryById } from '../../redux/actions/categoriesAction'
-import { transaction } from '../../redux/actions/transactionAction'
+import { addTransaction } from '../../redux/actions/transactionAction'
 import { IState } from '../../redux/store'
 import { DigitalPanel } from '../DigitalPanel/DigitalPanel'
 import cls from './Category.module.css'
@@ -14,6 +14,9 @@ export const Category = () => {
   const [money, setMoney] = useState<string>('')
   const categoryTitle = useSelector(
     (state: IState) => state.categoriesReducer.category.title
+  )
+  const categoryIcon = useSelector(
+    (state: IState) => state.categoriesReducer.category.icon
   )
 
   useEffect(() => {
@@ -37,14 +40,14 @@ export const Category = () => {
     const transactionObj = {
       date: `${currDate}.${currMounth}.${currYear}`,
       sum: money,
-      category: categoryTitle,
+      category: { title: categoryTitle, id: categoryIcon },
       id: Date.now(),
       note: notes,
     }
     console.log(transactionObj)
     setMoney('')
     setNotes('')
-    dispatch(transaction(transactionObj))
+    dispatch(addTransaction(transactionObj))
   }
 
   return (

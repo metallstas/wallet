@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { getCategories } from '../../redux/actions/categoriesAction'
 import { ICategory } from '../../redux/reducers/categoriesReducer'
@@ -24,6 +25,12 @@ export const HomePage = () => {
 
   return (
     <section>
+      <div className={cls.transaction}>
+        <NavLink className={cls.transaction__link} to={'./myTransactions'}>
+          Мои расходы
+        </NavLink>
+      </div>
+
       <div className={cls.categories}>
         {categories
           ? categories.map((category: ICategory) => {
@@ -40,10 +47,7 @@ export const HomePage = () => {
           : null}
       </div>
 
-      <button
-        onClick={onClickChangeBackground}
-        className={cls.button}
-      >
+      <button onClick={onClickChangeBackground} className={cls.button}>
         +
       </button>
     </section>

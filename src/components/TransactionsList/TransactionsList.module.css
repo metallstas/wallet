@@ -1,0 +1,53 @@
+.transaction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transactions__table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.table__string .table__icon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.index {
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-width: 50px;
+  font-weight: 900;
+  margin-bottom: 5px;
+  min-height: 50px;
+}
+
+.cell {
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-width: 150px;
+  min-height: 50px;
+  max-width: 300px;
+  margin-bottom: 5px;
+}
+
+.sort {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.sort__title {
+  margin-right: 5px;
+}
+
+.sort__ascending {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  cursor: pointer;
+}

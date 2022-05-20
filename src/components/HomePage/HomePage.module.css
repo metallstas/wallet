@@ -5,7 +5,7 @@
   border: 1px solid #000;
   background: none;
   cursor: pointer;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 .button:hover {
@@ -19,4 +19,30 @@
 .categories {
   display: flex;
   flex-wrap: wrap;
+}
+
+.transaction {
+  margin: 20px 0;
+}
+
+.transaction__link {
+  position: relative;
+  font-size: 20px;
+  color: #000;
+  text-decoration: none;
+}
+
+.transaction__link:hover::before {
+  width: 100%;
+}
+
+.transaction__link::before {
+  position: absolute;
+  content: '';
+  background: #000;
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  left: 0;
+  transition: all .5s ease;
 }
