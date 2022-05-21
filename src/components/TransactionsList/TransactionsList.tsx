@@ -118,7 +118,7 @@ export const TransactionsList = () => {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <table className={cls.transactions__table}>
           <tbody>
-            <tr className={cls.table__string}>
+            <tr>
               <td>№</td>
               <td>Ктегория</td>
               <td>Дата</td>
@@ -128,14 +128,14 @@ export const TransactionsList = () => {
             {transactions
               ? sortTransactions().map((el: ITransactions, index) => {
                   return (
-                    <tr className={cls.table__string} key={el.id}>
+                    <tr key={el.id}>
                       <td>{index + 1}</td>
-                      <td className={cls.table__icon}>
-                        {el.category.title} {currIcon(el.category.id)}
+                      <td className={cls.cell_icon}>
+                        {el.category.title} <span>{currIcon(el.category.id)}</span>
                       </td>
                       <td>{el.date}</td>
                       <td>{el.note}</td>
-                      <td>{el.sum}$</td>
+                      <td>{el.sum} $</td>
                     </tr>
                   )
                 })
