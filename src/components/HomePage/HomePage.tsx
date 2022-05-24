@@ -1,4 +1,6 @@
+import i18next from 'i18next'
 import { useEffect, useState } from 'react'
+import { initReactI18next, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
@@ -9,6 +11,7 @@ import { CardCategory } from '../CardCategory/CardCategory'
 import cls from './HomePage.module.css'
 
 export const HomePage = () => {
+  const { t, i18n } = useTranslation()
   const categories = useSelector(
     (state: IState) => state.categoriesReducer.categories
   )
@@ -26,8 +29,9 @@ export const HomePage = () => {
   return (
     <section>
       <div className={cls.transaction}>
+        
         <NavLink className={cls.transaction__link} to={'./myTransactions'}>
-          Мои расходы
+          {t('myExpenses')}
         </NavLink>
       </div>
 

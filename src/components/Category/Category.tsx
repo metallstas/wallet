@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCategoryById } from '../../redux/actions/categoriesAction'
@@ -9,6 +10,7 @@ import cls from './Category.module.css'
 
 export const Category = () => {
   const { id } = useParams()
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const [notes, setNotes] = useState<string>('')
   const [money, setMoney] = useState<string>('')
@@ -55,7 +57,7 @@ export const Category = () => {
       <h1>{categoryTitle}</h1>
       <div>
         <div className={cls.notes}>
-          <label htmlFor='notes'>Заметки</label>
+          <label htmlFor='notes'>{t('notes')}</label>
           <textarea
             value={notes}
             onChange={onChangeNote}
@@ -70,7 +72,7 @@ export const Category = () => {
       </div>
       <div>
         <button className={cls.enter_button} onClick={onClickEnter}>
-          Добавить расходы
+          {t('addExpenses')}
         </button>
       </div>
     </section>

@@ -7,8 +7,11 @@ import { ITransactions } from '../../redux/reducers/transactionsReducer'
 import { IState } from '../../redux/store'
 import cls from './TransactionsList.module.css'
 import { BsFillCaretDownFill, BsFillCaretUpFill } from 'react-icons/bs'
+import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 export const TransactionsList = () => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const [sortUp, setSortUp] = useState(true)
   const [sortType, setSortType] = useState('')
@@ -92,22 +95,22 @@ export const TransactionsList = () => {
       <h1>Transactions List</h1>
       <div>
         <div className={cls.sort}>
-          <p className={cls.sort__title}>Сортировать по:</p>
+          <p className={cls.sort__title}>{t("sortBy")}:</p>
           <select onChange={onChangeSort}>
             <option value=''></option>
-            <option value='category'>Ктегории</option>
-            <option value='date'>Дате</option>
-            <option value='sum'>Сумме</option>
+            <option value='category'>{t("sortByCategory")}</option>
+            <option value='date'>{t("sortByDate")}</option>
+            <option value='sum'>{t("sortBySum")}</option>
           </select>
           {sortType === 'sum' ? (
             <div onClick={onCLickSortUp}>
               {sortUp ? (
-                <p className={cls.sort__ascending}>
-                  По возрастанию <BsFillCaretUpFill />{' '}
+                <p className={cls.sort_ascending}>
+                  {t("Ascending")} <BsFillCaretUpFill />{' '}
                 </p>
               ) : (
-                <p className={cls.sort__ascending}>
-                  По убыванию
+                <p className={cls.sort_ascending}>
+                  {t("Descending")}
                   <BsFillCaretDownFill />
                 </p>
               )}

@@ -1,0 +1,25 @@
+.header {
+  padding-top: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.language_btn {
+  margin-left: auto;
+  padding: 5px 10px;
+  background: none;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.language_btn:hover {
+  background: #ccc;
+}

@@ -52,11 +52,12 @@
   margin-right: 5px;
 }
 
-.sort__ascending {
+.sort_ascending {
   display: flex;
   align-items: center;
   margin-left: 30px;
   cursor: pointer;
+  min-width: 130px;
 }
 
 span svg {
