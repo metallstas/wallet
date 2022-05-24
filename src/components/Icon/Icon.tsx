@@ -1,3 +1,5 @@
+import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import { IconType } from 'react-icons'
 import { IoIosCheckmark } from 'react-icons/io'
 import { icons } from '../../redux/constans'
@@ -15,9 +17,10 @@ interface IIcon {
 
 
 export const Icon = ({activeIcon, setActiveIcon}: IIcon) => {
+  const { t } = useTranslation()
   return (
     <div className={cls.iconBlock}>
-      <p className={cls.nameBlock}>Иконки: </p>
+      <p className={cls.nameBlock}>{t('icons')}: </p>
       <div>
         {icons.map((el) => {
           return (

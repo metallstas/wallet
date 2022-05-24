@@ -1,3 +1,5 @@
+import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import { IoIosCheckmark } from 'react-icons/io'
 import { colors } from '../../redux/constans'
 import cls from './Color.module.css'
@@ -13,9 +15,10 @@ interface IColor {
 }
 
 export const Color = ({ activeColor, setActiveColor}: IColor) => {
+  const { t } = useTranslation()
   return (
     <div className={cls.colorBlock}>
-          <p className={cls.nameBlock}>Цвет: </p>
+          <p className={cls.nameBlock}>{t('color')}: </p>
           <div className={cls.colorBlock}>
             {colors.map((el) => {
               return (

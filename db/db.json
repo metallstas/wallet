@@ -52,17 +52,43 @@
   "transaction": [
     {
       "date": "19.05.2022",
-      "sum": "55",
-      "category": "Phone",
-      "id": 1652948149618,
-      "note": "asd"
+      "sum": "200.00",
+      "category": {
+        "title": "Phone",
+        "id": "smartphone"
+      },
+      "id": 1652952982054,
+      "note": "Купил телефон"
     },
     {
       "date": "19.05.2022",
-      "sum": "55.99",
-      "category": "Phone",
-      "id": 1652948303228,
-      "note": "sad"
+      "sum": "84.50",
+      "category": {
+        "title": "Auto",
+        "id": "car"
+      },
+      "id": 1652953023306,
+      "note": "Купил запчасти для технического обслуживания"
+    },
+    {
+      "date": "20.05.2022",
+      "sum": "80.50",
+      "category": {
+        "title": "Auto",
+        "id": "car"
+      },
+      "id": 1652953023305,
+      "note": "Купил Форсунку"
+    },
+    {
+      "date": "23.05.2022",
+      "sum": "120",
+      "category": {
+        "title": "AutoSports",
+        "id": "car"
+      },
+      "id": 1653296982356,
+      "note": "BMW"
     }
   ]
 }

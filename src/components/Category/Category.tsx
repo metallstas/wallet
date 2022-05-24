@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCategoryById } from '../../redux/actions/categoriesAction'
-import { transaction } from '../../redux/actions/transactionAction'
+import { addTransaction } from '../../redux/actions/transactionAction'
 import { IState } from '../../redux/store'
 import { DigitalPanel } from '../DigitalPanel/DigitalPanel'
 import cls from './Category.module.css'
 
 export const Category = () => {
   const { id } = useParams()
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const [notes, setNotes] = useState<string>('')
   const [money, setMoney] = useState<string>('')
   const categoryTitle = useSelector(
     (state: IState) => state.categoriesReducer.category.title
+  )
+  const categoryIcon = useSelector(
+    (state: IState) => state.categoriesReducer.category.icon
   )
 
   useEffect(() => {
@@ -37,14 +42,14 @@ export const Category = () => {
     const transactionObj = {
       date: `${currDate}.${currMounth}.${currYear}`,
       sum: money,
-      category: categoryTitle,
+      category: { title: categoryTitle, id: categoryIcon },
       id: Date.now(),
       note: notes,
     }
     console.log(transactionObj)
     setMoney('')
     setNotes('')
-    dispatch(transaction(transactionObj))
+    dispatch(addTransaction(transactionObj))
   }
 
   return (
@@ -52,7 +57,7 @@ export const Category = () => {
       <h1>{categoryTitle}</h1>
       <div>
         <div className={cls.notes}>
-          <label htmlFor='notes'>Заметки</label>
+          <label htmlFor='notes'>{t('notes')}</label>
           <textarea
             value={notes}
             onChange={onChangeNote}
@@ -67,7 +72,7 @@ export const Category = () => {
       </div>
       <div>
         <button className={cls.enter_button} onClick={onClickEnter}>
-          Добавить расходы
+          {t('addExpenses')}
         </button>
       </div>
     </section>

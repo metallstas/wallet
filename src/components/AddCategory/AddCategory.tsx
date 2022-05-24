@@ -12,12 +12,14 @@ import { IState } from '../../redux/store'
 import { colors, icons } from '../../redux/constans'
 import { Color, IColorActive } from '../Color/Color'
 import { Icon, IIconActive } from '../Icon/Icon'
+import { useTranslation } from 'react-i18next'
 
 export interface IErrors {
   title: string
 }
 
 export const AddCategory = ({}) => {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const category = useSelector(
@@ -74,7 +76,7 @@ export const AddCategory = ({}) => {
     <div className={cls.addCategory}>
       <div className={cls.container}>
         <Input
-          label='Название категории'
+          label={t('nameCategory')}
           id='title'
           value={title}
           onChange={onChangeTitle}
@@ -83,7 +85,7 @@ export const AddCategory = ({}) => {
         <Icon activeIcon={activeIcon} setActiveIcon={setActiveIcon} />
         <Color activeColor={activeColor} setActiveColor={setActiveColor} />
         <button className={cls.button} onClick={onClickAddCategory}>
-          Добавить
+          {t('add')}
         </button>
       </div>
       {title || activeColor || activeIcon ? (
